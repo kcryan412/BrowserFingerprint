@@ -1,4 +1,3 @@
-
 <html>
 <head>
 
@@ -6,11 +5,62 @@
 <body>
     window.navigator.userAgent: <div id="userAgent"></div><br>
     window.navigator.platform: <div id="platform"></div><br>
+
+    <h5>Bot Checks</h5>
+    window._phantom: <div id="phantom"></div><br>
+    window.callPhantom: <div id="callphantom"></div><br>
+    window.__phantomas: <div id="phantomas"></div><br>
+    window.Buffer: <div id="buffer"></div><br>
+    window.emit: <div id="emit"></div><br>
+    window.spawn: <div id="spawn"></div><br>
+    window.webdriver: <div id="webdriver"></div><br>
+    window.domAutomation: <div id="domautomation"></div><br>
+    window.domAutomationController: <div id="domautomationcontroller"></div><br>
+    window.document.documentElement.getAttribute("webdriver"): <div id="webdriver-element"></div><br>
+    screen.width: <div id="screen-width"></div><br>
+    screen.height: <div id="screen-height"></div><br>
+    window.innerWidth: <div id="window-inner-width"></div><br>
+    window.innerHeight: <div id="window-inner-height"></div><br>
+    screen-check sw == ww && sh == wh: <div id="size-check"></div><br>
+    screen-check (!(ww % 200) && (wh % 100)): <div id="window-check"></div><br>
+
+
+    <h5>Navigator</h5>
     window.navigator: <pre><div id="navigator"></div></pre><br>
 </body>
 <script>
     document.getElementById("userAgent").innerHTML = window.navigator.userAgent;
     document.getElementById("platform").innerHTML = window.navigator.platform;
+    document.getElementById("phantom").innerHTML = window._phantom;
+    document.getElementById("callphantom").innerHTML = window.callPhantom;
+    document.getElementById("phantomas").innerHTML = window.__phantomas;
+    document.getElementById("buffer").innerHTML = window.Buffer;
+    document.getElementById("emit").innerHTML = window.emit;
+    document.getElementById("spawn").innerHTML = window.spawn;
+    document.getElementById("webdriver").innerHTML = window.webdriver;
+    document.getElementById("domautomation").innerHTML = window.domAutomation;
+    document.getElementById("domautomationcontroller").innerHTML = !window.domAutomationController;
+    document.getElementById("webdriver-element").innerHTML = !window.document.documentElement.getAttribute("webdriver");
+
+    var sw, sh, ww, wh, v;
+    sw = screen.width;
+    sh = screen.height;
+    ww = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0;
+    wh = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+    if ((sw == ww) && (sh == wh)) {
+        v = true;
+        if (!(ww % 200) && (wh % 100)) {
+            v = true;
+        }
+    }
+
+    document.getElementById("screen-width").innerHTML = sw
+    document.getElementById("screen-height").innerHTML = sh
+    document.getElementById("window-inner-width").innerHTML = ww
+    document.getElementById("window-inner-height").innerHTML = wh
+    document.getElementById("size-check").innerHTML = ((sw == ww) && (sh == wh))
+    document.getElementById("window-check").innerHTML = (!(ww % 200) && (wh % 100))
+
 
     var _navigator = {};
     for (var i in window.navigator) _navigator[i] = navigator[i];
